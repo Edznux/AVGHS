@@ -1,0 +1,44 @@
+{"frames": {
+
+"player_die_001.png":
+{
+	"frame": {"x":251,"y":2,"w":36,"h":94},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":6,"w":36,"h":94},
+	"sourceSize": {"w":60,"h":100}
+},
+"player_die_002.png":
+{
+	"frame": {"x":189,"y":2,"w":60,"h":94},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":6,"w":60,"h":94},
+	"sourceSize": {"w":60,"h":100}
+},
+"player_die_003.png":
+{
+	"frame": {"x":104,"y":2,"w":83,"h":94},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":6,"w":83,"h":94},
+	"sourceSize": {"w":100,"h":100}
+},
+"player_die_004.png":
+{
+	"frame": {"x":2,"y":2,"w":100,"h":94},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":6,"w":100,"h":94},
+	"sourceSize": {"w":100,"h":100}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "player_die.png",
+	"format": "RGBA8888",
+	"size": {"w":289,"h":98},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9d1a5ca30d4feee1cdcfb6b086648a5a:0e012505adf126ec130e2d55ebf96b8d:3d34f3701ff3b68dc47777807eb07e35$"
+}
+}
