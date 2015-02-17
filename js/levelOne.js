@@ -4,11 +4,12 @@ avghs.levelOne = function(game){};
 avghs.levelOne.prototype = {
 	preload: function(){
 		game.load.image('ground', 'imgs/ground.png');
+		game.load.image('bush', 'imgs/bush.png');
 		game.load.atlasJSONHash('player', 'imgs/player.png', 'imgs/player.json');
 		game.load.atlasJSONHash('bird', 'imgs/bird.png', 'imgs/bird.json');
 		game.load.image('tree', 'imgs/tree.png');
 		game.load.image('tree2', 'imgs/tree2.png');
-	game.load.image('finish', 'imgs/finish.png');
+		game.load.image('finish', 'imgs/finish.png');
 	},
 	create : function(){
 		game.world.setBounds(0,0,2000,600);
@@ -17,6 +18,7 @@ avghs.levelOne.prototype = {
 		this.loadBackgroundOne();
 		this.loadTree(3);
 		this.loadGround();
+		this.loadBushes();
 		this.loadFinish();
 
 		avghs.characters.loadPlayer(1);	//load player for level one
@@ -49,7 +51,15 @@ avghs.levelOne.prototype = {
 
 		var ground	= grounds.create(0,game.world.height-100,"ground");
 		ground.body.immovable=true;
-		ground.scale.setTo(game.world.height,2);
+		// ground.scale.setTo(1.5,1);
+		ground.fixedToCamera= true;
+	},
+	loadBushes:function(){
+		console.log("okokooko");
+		bushes = game.add.group();
+		bushes.enableBody=true;
+		var bush	= bushes.create(500,500,"bush");
+		bush.body.immovable=true;
 	},
 	loadFinish:function(){
 		finishes = game.add.group();
