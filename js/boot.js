@@ -1,5 +1,5 @@
 var avghs = {};
-var cursor,characters,grounds,background,finishes,finish,rocks;
+var cursor,characters,birds,grounds,background,finishes,finish,rocks;
 var player;
 var finishReached;
 var tree = [];

@@ -18,9 +18,9 @@ avghs.levelOne.prototype = {
 		this.loadBackgroundOne();
 		this.loadTree(3);
 		this.loadGround();
-		this.loadBushes();
 		this.loadFinish();
 
+		this.loadBushes();
 		avghs.characters.loadPlayer(1);	//load player for level one
 											//load after player so z > so, player go in backyard
 		this.loadTree(4);
@@ -45,21 +45,29 @@ avghs.levelOne.prototype = {
 		bg.fixedToCamera= true;
 	},
 	loadGround : function(){
-		//create plateform (ground);
+		// create plateform (ground);
 		grounds = game.add.group();
-		grounds.enableBody=true;
 
-		var ground	= grounds.create(0,game.world.height-100,"ground");
-		ground.body.immovable=true;
-		// ground.scale.setTo(1.5,1);
-		ground.fixedToCamera= true;
+		grounds.enableBody=true;
+		
+		for(var i=0;i<5;i++){
+			var ground	= grounds.create(600*i,game.world.height-100,"ground");
+			ground.body.immovable=true;
+			grounds.add(ground);
+		}
+
+
+		// ground.fixedToCamera= true;
 	},
 	loadBushes:function(){
 		console.log("okokooko");
 		bushes = game.add.group();
 		bushes.enableBody=true;
-		var bush	= bushes.create(500,500,"bush");
-		bush.body.immovable=true;
+		var bush;
+		for(var i=0;i<20;i++){
+			bush = bushes.create(i*90,405 + (Math.random()*10),"bush");
+			bush.body.immovable=true;
+		}
 	},
 	loadFinish:function(){
 		finishes = game.add.group();
@@ -91,11 +99,18 @@ avghs.levelOne.prototype = {
 		}
 	},
 	addBird: function(){
-		var bird = [];
+		// var bird = [];
+
+		birds = game.add.group();
 		for(var i=0;i<9;i++){
-			bird[i]=game.add.sprite(game.world.randomX, Math.random()*400, 'bird');
-			bird[i].animations.add("fly");
-			bird[i].animations.play('fly', 4, true);
+			bird=game.add.sprite(game.world.randomX, Math.random()*400, 'bird');
+			game.physics.arcade.enable(bird);
+			bird.enableBody = true;
+
+			bird.body.velocity.x = 50;
+			bird.animations.add("fly");
+			bird.animations.play('fly', 4, true);
+			birds.add(bird);
 		}
 	}
 };
