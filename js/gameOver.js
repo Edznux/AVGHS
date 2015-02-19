@@ -1,8 +1,6 @@
 avghs.gameOver = function(game){};
 avghs.gameOver.prototype = {
 	preload:function(){
-		game.load.image('gameOver', 'imgs/gameover.png');
-		game.load.image('restart', 'imgs/restart.png');
 	},
 	create: function(){
 		background = game.add.group();

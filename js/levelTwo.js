@@ -4,25 +4,29 @@ avghs.levelTwo.prototype = {
 	preload: function(){
 		game.load.image('rocks', 'imgs/rocks.png');
 		game.load.image('player_fly', 'imgs/player_fly.png');
+		game.load.image('background-sky', 'imgs/background-sky.png');
 	},
 	create:function(){
-		// console.log(game);
+		// modify world bound for collide right border
+		game.world.setBounds(0,0,800,600);
+
 		background = game.add.group();
-		var bg = background.create(0,0,"background");
+		var bg = background.create(0,0,"background-sky");
 		bg.fixedToCamera = true;
 		avghs.characters.loadPlayer(2);
 
 		rocks = game.add.group();
-		console.log("group a create")
-		
 		this.rocks();
 	},
 	update:function(){
 		avghs.characters.animatePlayer(2);	
 		rocks.forEach(function(r){
-			game.physics.arcade.collide(r,player);
-			game.physics.arcade.collide(player,r);
+			game.physics.arcade.collide(r,player,function(){
+				game.state.start("GameOver",true,false);
+			},null,this);
+			// game.physics.arcade.collide(player,r);
 		},this);
+
 		// this.streak();
 	},
 	rocks:function(){
@@ -33,11 +37,11 @@ avghs.levelTwo.prototype = {
 	streak:function(){
 		var emitter = game.add.emitter(game.world.width,game.world.height,100);
 		rocks.forEach(function(rock){
-			emitter.makeParticles("rockParticules");
+			// emitter.makeParticles("rockParticules");
 			// emitter.minParticleSpeed.setTo(-200,-200);
 			// emitter.maxParticleSpeed.setTo(200,200);
-			emitter.gravity = 0;
-			emitter.start(true, 10,null,10);
+			// emitter.gravity = 0;
+			// emitter.start(true, 10,null,10);
 		},this);	
 	},
 	rock:function(){
@@ -47,8 +51,8 @@ avghs.levelTwo.prototype = {
 		rock.scale.setTo(factorSize,factorSize);
 		game.physics.arcade.enable(rock);
 		rock.body.gravity.y = 300;
-		
-		
+
+		rocks.add(rock);
 		// player.kill();
 
 		switch(dir){
