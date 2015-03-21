@@ -21,7 +21,7 @@ avghs.levelOne.prototype = {
 		this.loadFinish();
 
 		this.loadBushes();
-		avghs.characters.loadPlayer(1);	//load player for level one
+		avghs.characters.loadPlayer(1,200,395);	//load player for level one
 											//load after player so z > so, player go in backyard
 		this.loadTree(4);
 		this.addBird();
@@ -38,6 +38,23 @@ avghs.levelOne.prototype = {
 		avghs.characters.animatePlayer(1);
 		// cursor = game.input.keyboard.createCursorKeys();
 		this.checkFinish();
+		this.triggers();
+	},
+	triggers: function(){
+		if(player.body.center.x > 300){
+			avghs.hud.storyTelling();
+			avghs.hud.nextStory();
+		}
+
+		if(player.body.center.x > 600){
+			avghs.hud.storyTelling();
+			avghs.hud.nextStory();
+		}
+
+		if(player.body.center.x > 900){
+			avghs.hud.storyTelling();
+			avghs.hud.nextStory();
+		}
 	},
 	loadBackgroundOne : function(){
 		background = game.add.group();
@@ -60,7 +77,6 @@ avghs.levelOne.prototype = {
 		// ground.fixedToCamera= true;
 	},
 	loadBushes:function(){
-		console.log("okokooko");
 		bushes = game.add.group();
 		bushes.enableBody=true;
 		var bush;

@@ -8,29 +8,41 @@ avghs.levelTwo.prototype = {
 	},
 	create:function(){
 		// modify world bound for collide right border
+		alert("tamere");
 		game.world.setBounds(0,0,800,600);
 
 		background = game.add.group();
 		var bg = background.create(0,0,"background-sky");
 		bg.fixedToCamera = true;
-		avghs.characters.loadPlayer(2);
+		avghs.characters.loadPlayer(2,400,600);
 
 		rocks = game.add.group();
 		this.rocks();
+		TFinish = new triggers(0,200,800,800);
 	},
 	update:function(){
 		avghs.characters.animatePlayer(2);	
+		avghs.characters.moveUp(0.5);
+
 		rocks.forEach(function(r){
 			game.physics.arcade.collide(r,player,function(){
 				game.state.start("GameOver",true,false);
 			},null,this);
 			// game.physics.arcade.collide(player,r);
 		},this);
-
+		this.checkFinish();
 		// this.streak();
 	},
+	checkFinish: function(){
+		// console.log(avghs.characters.getY());
+		if()
+		if(avghs.characters.getY() < 200){
+			alert("you win");
+			game.state.start("LevelThreeIntro",true,false)
+		}
+	},
 	rocks:function(){
-		game.time.events.loop(100,function(){
+		game.time.events.loop(200,function(){
 			this.rock();
 		},this).autoDestroy = true;
 	},
